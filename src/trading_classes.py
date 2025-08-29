@@ -1,13 +1,13 @@
 import os
 import pandas as pd
 import yfinance as yf
-import alpaca_py as tradeapi
+import alpaca_trade_api as tradeapi
 import configparser
 import pytz
 import locale
 import pandas_market_calendars as mcal
 
-from alpaca_py.rest import APIError
+from alpaca_trade_api.rest import APIError
 from ta.volatility import BollingerBands
 from ta.momentum import RSIIndicator
 from ta.trend import sma_indicator
@@ -165,7 +165,8 @@ class TradingOpportunities:
 
         df_tech = [x for x in df_tech if not x.empty]
         df_tech = pd.concat(df_tech)
-
+        print("This is df_tech after concat at line 169")
+        print(df_tech)
         # Define the buy criteria
         buy_criteria = (
             (df_tech[["bblo14", "bblo30", "bblo50", "bblo200"]] == 1).any(axis=1)
@@ -287,6 +288,8 @@ class Alpaca:
         # Define the sell criteria
         TradeOpps = TradingOpportunities()
         df_current_positions = self.get_current_positions()
+        print("This is df_current_positions at 291")
+        print(df_current_positions)
         df_current_positions_hist = TradeOpps.get_asset_info(
             df=df_current_positions[df_current_positions['yf_ticker'] != 'Cash'])
 

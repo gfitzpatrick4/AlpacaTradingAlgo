@@ -40,7 +40,7 @@ def main(days_hist=1, st_hr_for_message=6, end_hr_for_message=9, n_stocks=30, n_
 
     # Shows all scraped opportunities; defaults to 25 top losing stocks and 25 of the most popular crypto assets
     trades.get_trading_opportunities()
-
+    print(trades.n_stocks)
     # The all_tickers attribute is a list of all tickers in the get_trading_opportunities() method. Passing this list through the get_asset_info() method shows just the tickers that meet buying criteria
     trades.get_asset_info()
 
